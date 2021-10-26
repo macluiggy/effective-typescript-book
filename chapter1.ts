@@ -17,9 +17,11 @@ saluda = 1234 //typescript gives you a message error, that the original variable
 //but it won't prevent you from the build, they are just warnings of potencial error
 //You cannot check typescript types at runtime
 interface Square {
+    isRectangle: boolean
     width: number;
 }
 interface Rectangle extends Square {
+    kind: boolean
     height: number
 }
 //depending of what argument we give it shape will be defined, for example, if we give it a variable 
@@ -28,11 +30,11 @@ interface Rectangle extends Square {
 // this variable have the height property
 type Shape = Square | Rectangle;
 function calculateShape(shape: Shape) {
-    if ('height' in shape) {
+    if (shape.isRectangle) {
         return shape.width * shape.height
     } else {
         return shape.width ** 2
     }
 }
-console.log(calculateShape({width: 12, height: 12}))
-console.log(calculateShape({width: 12})) //j
+console.log(calculateShape({width: 12, height: 12, isRectangle: true}))
+console.log(calculateShape({width: 12, isRectangle: true}))
