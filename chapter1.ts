@@ -35,4 +35,4 @@ function calculateShape(shape: Shape) {
     }
 }
 console.log(calculateShape({width: 12, height: 12}))
-console.log(calculateShape({width: 12})) //
+console.log(calculateShape({width: 12})) //hjhhjh
