@@ -9,3 +9,9 @@ add(10, 23)
 // strictNullChecks controla si null y undefined son valores permisibles en cada typo
 const x: number | null = null //no se muestra error si strictNullChecks esta desactivado
 // al igual que noImplicitAny, strictNullChecks no se activa si se esta emigrando en un projecto
+//
+// hola ahora estoy cambiando esta linea jaja
+//
+// nueva linea de codigo
+// ja
+// ja
