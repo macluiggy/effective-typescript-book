@@ -1,4 +1,4 @@
-// Item 1
+//Item 1
 // Se recomienda tener activada la opcion noImplicitAny: true para que typescript detecte los errores en los typos de variables
 // es apropiado dejarlo desactivado cuando se esta transicionando de un projecto a otro
 function add(a: number, b: number) {
