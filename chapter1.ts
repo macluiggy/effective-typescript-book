@@ -37,4 +37,4 @@ function calculateShape(shape: Shape) {
     }
 }
 console.log(calculateShape({width: 12, height: 12, isRectangle: true}))
-console.log(calculateShape({width: 12, isRectangle: true}))
+console.log(calculateShape({width: 12, isRectangle: true})) //jdjdjd
