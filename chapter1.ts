@@ -28,6 +28,7 @@ interface Rectangle extends Square {
 // x = { width: 12 } it would be defined as Square, since it doesn't have the variable doesnt have the height
 // property, but if we give it a variable y = { width: 13, height: 14 } it would be defined as Rectangle, since
 // this variable have the height property
+/*
 type Shape = Square | Rectangle;
 function calculateShape(shape: Shape) {
     if (shape.isRectangle) {
@@ -38,3 +39,28 @@ function calculateShape(shape: Shape) {
 }
 console.log(calculateShape({width: 12, height: 12, isRectangle: true}))
 console.log(calculateShape({width: 12, isRectangle: true})) //jdjdjdt//
+ */
+
+// i quiero you to erase me, please to something somethin
+// hola, copiame a mi tambien
+
+class Square {
+    constructor(public width: number) {}
+}
+class Rectangle extends Square {
+    constructor(public width: number, public height: number) {
+        super(width);
+    }
+}
+type Shape = Square | Rectangle;
+// in this case scenario we indeed can use instanceof, because class Rectangle introduces both a type and a value
+// whereas interface only introduce a type
+function calculateArea(shape: Shape) {
+    if (shape instanceof Rectangle) {
+        shape;
+        return shape.width * shape.height;
+    } else {
+        shape
+        return shape.width ** 2 // OK
+    }
+}
