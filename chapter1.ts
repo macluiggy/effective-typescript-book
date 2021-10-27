@@ -64,3 +64,25 @@ function calculateArea(shape: Shape) {
         return shape.width ** 2 // OK
     }
 }
+
+function asNumber(val: number | string): number | string {
+    //    return val as number;
+    return typeof (val) === 'number' ? val : Number(val) === NaN ? 'please enter a number' : Number(val)
+}
+console.log(asNumber(88))
+console.log(asNumber('jd'));
+var isLightOn: boolean = false;
+const turnLightOn = () => {isLightOn = true}
+const turnLightOff = () => {isLightOn = false}
+function setLightSwitch(value: boolean) {
+    switch (value) {
+        case true:
+            turnLightOn()
+            break
+        case false:
+            turnLightOff()
+            break
+        default:
+            console.log(`I'm afraind i cant do that`)
+    }
+}
