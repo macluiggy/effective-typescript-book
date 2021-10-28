@@ -130,7 +130,7 @@ interface Vector3D {
 function normalize(v: Vector3D) {
     const {x,y,z} = v
     //dado que la funcion siguiente toma un objeto con dos o mas propiedades, typescript no detectara
-    //el error, que el qu esta funcion usa 3 propiedades, debido a que n propiedades definidas en un
+    //el error, que el que esta funcion usa 3 propiedades, debido a que n propiedades definidas en un
     //typo/interface n o mas propiedades deben haber, siendo que tambien las propiedades tienen
     //que tener el mismo nombre tanto en el parametro como en el argumento
     const length =  calculateLength(v);
@@ -141,3 +141,6 @@ function normalize(v: Vector3D) {
     }
 }
 normalize({x:1, z:2, y:3,})
+type Userx = {a: string}
+let userx: Userx = {a: 'dd'}
+//userx.er
