@@ -27,17 +27,15 @@ console.log(operateNumbers(2, 0, 'divide'))
 console.log(operateNumbers(2, 4, 'subtract'))
 console.log(operateNumbers(2, 4, 'add'))
 
-interface User {
-    name: string,
-    age: number
-}
-interface User {
-    name: string,
-    age: number
-}
 type description = string
-type description = number
+interface User {
+    name: string,
+    age: number,
+    description: description
+}
 const user: User = {
     name: 'luiggy',
-    age: 23
+    age: 23,
+    description: 'hola todo bien'
 }
+const greetUser = ({name, age}: User): string => `Hello ${name}, you are ${age} years old`

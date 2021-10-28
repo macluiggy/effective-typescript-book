@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -26,7 +27,7 @@ var x = null; //no se muestra error si strictNullChecks esta desactivado
 //Item 3: Understand That Code Generation Is Independent of Types
 var saluda = 'hello';
 saluda = 1234; //typescript gives you a message error, that the original variable is a string, not a number
-//depending of what argument we give it shape will be defined, for example, if we give it a variable 
+//depending of what argument we give it shape will be defined, for example, if we give it a variable
 // x = { width: 12 } it would be defined as Square, since it doesn't have the variable doesnt have the height
 // property, but if we give it a variable y = { width: 13, height: 14 } it would be defined as Rectangle, since
 // this variable have the height property
@@ -93,3 +94,8 @@ function setLightSwitch(value) {
             console.log("I'm afraind i cant do that");
     }
 }
+//You Cannot Overload a Function Based on TypeScript Types
+function add2(a, b) { return a + b; }
+console.log(add('1', '2'));
+
+//

@@ -1,3 +1,4 @@
+"use strict";
 var birthdayGreeter = function (name, age) {
     "Happy birthday " + name + ", you are now " + age + " years old";
 };
@@ -13,10 +14,19 @@ var operateNumbers = function (x, y, operation) {
         multiply: x * y,
         divide: y === 0 ? 'cant divide by zero' : x / y,
         subtract: x - y,
-        add: x + y
+        add: x + y,
     }[operation];
 };
 console.log(operateNumbers(2, 4, 'multiply'));
 console.log(operateNumbers(2, 0, 'divide'));
 console.log(operateNumbers(2, 4, 'subtract'));
 console.log(operateNumbers(2, 4, 'add'));
+var user = {
+    name: 'luiggy',
+    age: 23,
+    description: 'hola todo bien'
+};
+var greetUser = function (_a) {
+    var name = _a.name, age = _a.age;
+    return "Hello " + name + ", you are " + age + " years old";
+};
