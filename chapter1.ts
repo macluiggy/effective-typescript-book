@@ -87,23 +87,38 @@ function setLightSwitch(value: boolean) {
     }
 }
 
-//You Cannot Overload a Function Based on TypeScript Types
-function add2 (a: number | string, b: number | string): number | string{ return a + b}
+// You Cannot Overload a Function Based on TypeScript Types
+function add2 (a: string| number, b: string| number): string { return `${a + b}`}
 console.log(add(1, 2))
 
 
 
 
 
+//Item 4: Get Comfortable with Structural Typing
+
+interface Vector2D {
+    x: number;
+    y: number;
+}
 
 
+function calculateLength({x, y}: Vector2D): number {
+    return Math.sqrt(x * x + y * y)
+}
+interface NamedVector {
+    name: string;
+    x: number;
+    y: number;
+}
 
-
-
-
-
-
-
+//como tanto NamedVector y Vector2D tienen las propiedades x, y y ambas son de typo numero
+//typescript tomara a la propiedad NamedVector como correcta, aun cuando tiene una propiedad de
+//mas
+const v: NamedVector = { x: 3, y: 4, name: 'Zee' };
+calculateLength(v)
+const v2: Vector2D = { x: 2, y: 1 }
+calculateLength(v2)
 
 
 
