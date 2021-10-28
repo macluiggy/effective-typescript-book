@@ -117,10 +117,27 @@ interface NamedVector {
 //mas
 const v: NamedVector = { x: 3, y: 4, name: 'Zee' };
 calculateLength(v)
-const v2: Vector2D = { x: 2, y: 1 }
+const v2: Vector2D = { x: 2, y: 1}
 calculateLength(v2)
 
-
-
+interface Vector3D {
+    x: number;
+    y: number;
+    z: number;
+}
 
 //
+function normalize(v: Vector3D) {
+    const {x,y,z} = v
+    //dado que la funcion siguiente toma un objeto con dos o mas propiedades, typescript no detectara
+    //el error, que el qu esta funcion usa 3 propiedades, debido a que n propiedades definidas en un
+    //typo/interface n o mas propiedades deben haber, siendo que tambien las propiedades tienen
+    //que tener el mismo nombre tanto en el parametro como en el argumento
+    const length =  calculateLength(v);
+    return {
+        x: x/length,
+        y: y/length,
+        z: z/length,
+    }
+}
+normalize({x:1, z:2, y:3,})
