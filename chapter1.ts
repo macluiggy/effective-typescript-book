@@ -144,3 +144,49 @@ normalize({x:1, z:2, y:3,})
 type Userx = {a: string}
 let userx: Userx = {a: 'dd'}
 //userx.er
+
+function calculateLengthL1(v: Vector3D) {
+    /*let length = 0;
+    for (const axis of Object.keys(v)) {
+        //dado que v puede tener mas propiedades en el argumento que en el parametro
+        //esta puede tener una o mas con tipo diferente al establecido en Vector3D
+        //es por ese motivo que typescript considera a axis como typo any, ya que aqui se
+        //hace una labaza de propiedades. TypeScript no tiene motivo para creer que v[axis]
+        //es un numero
+        const coord = v[axis]
+        length += Math.abs(coord)
+    }
+    return length*/
+    const {x,y,z} = v;
+    return Math.abs(x)+Math.abs(y)+Math.abs(z);
+    /*for (let axis in v) {
+        const cord = v[axis]
+    }*/
+}
+
+
+class C {
+    foo: string
+    constructor(foo: string) {
+        this.foo = foo
+    }
+}
+
+const c = new C('instance of C')
+// aqui esta clase se esta tomando como un typo, esto conlleva a que un objeto pueda ser definido
+// como typo C como se muestra en la variable d, ya que esta tiene la misma estructura que la 
+// clase C => { foo: string } => this.foo => d.foo = 'string'
+const d: C = { foo: 'object literal' }
+
+
+interface DB {
+    runQuery: (sql: string) => any[]
+}
+interface Author {
+    first: string;
+    last: string;
+}
+function getAuthors(database: DB): Author[] {
+    const authorRows = database.runQuery('SELECT FIRST, LAST FROM AUTHORS');
+    return authorRows.map(row => ({first: row[0], last: row[1]}))
+}
