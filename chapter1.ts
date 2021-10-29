@@ -178,10 +178,13 @@ const c = new C('instance of C')
 // clase C => { foo: string } => this.foo => d.foo = 'string'
 const d: C = { foo: 'object literal' }
 
-
+//esta interface es una databe que tiene ese metodo y devuelve un array con elementos
+//de cualquier tipo
 interface DB {
     runQuery: (sql: string) => any[]
 }
+//esta interfaz servira para la estructura que tiene que tener cada elemento
+//en el array que devolvera la funcion
 interface Author {
     first: string;
     last: string;
@@ -189,4 +192,8 @@ interface Author {
 function getAuthors(database: DB): Author[] {
     const authorRows = database.runQuery('SELECT FIRST, LAST FROM AUTHORS');
     return authorRows.map(row => ({first: row[0], last: row[1]}))
+}
+
+module.exports = {
+    getAuthors
 }
