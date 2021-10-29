@@ -17,6 +17,7 @@
     "mime-types": "^2.1.33"
   },
   "scripts": {
+  	"test": "jest"
   },
   "repository": {
     "type": "git",

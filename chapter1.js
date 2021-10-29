@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -26,7 +25,6 @@ var x = null; //no se muestra error si strictNullChecks esta desactivado
 // al igual que noImplicitAny, strictNullChecks no se activa si se esta emigrando en un projecto
 //Item 3: Understand That Code Generation Is Independent of Types
 var saluda = 'hello';
-saluda = 1234; //typescript gives you a message error, that the original variable is a string, not a number
 //depending of what argument we give it shape will be defined, for example, if we give it a variable
 // x = { width: 12 } it would be defined as Square, since it doesn't have the variable doesnt have the height
 // property, but if we give it a variable y = { width: 13, height: 14 } it would be defined as Rectangle, since
@@ -94,7 +92,71 @@ function setLightSwitch(value) {
             console.log("I'm afraind i cant do that");
     }
 }
-//You Cannot Overload a Function Based on TypeScript Types
-function add2(a, b) { return a + b; }
-console.log(add('1', '2'));
+// You Cannot Overload a Function Based on TypeScript Types
+function add2(a, b) { return "" + (a + b); }
+console.log(add(1, 2));
+function calculateLength(_a) {
+    var x = _a.x, y = _a.y;
+    return Math.sqrt(x * x + y * y);
+}
+//como tanto NamedVector y Vector2D tienen las propiedades x, y y ambas son de typo numero
+//typescript tomara a la propiedad NamedVector como correcta, aun cuando tiene una propiedad de
+//mas
+var v = { x: 3, y: 4, name: 'Zee' };
+calculateLength(v);
+var v2 = { x: 2, y: 1 };
+calculateLength(v2);
 //
+function normalize(v) {
+    var x = v.x, y = v.y, z = v.z;
+    //dado que la funcion siguiente toma un objeto con dos o mas propiedades, typescript no detectara
+    //el error, que el que esta funcion usa 3 propiedades, debido a que n propiedades definidas en un
+    //typo/interface n o mas propiedades deben haber, siendo que tambien las propiedades tienen
+    //que tener el mismo nombre tanto en el parametro como en el argumento
+    var length = calculateLength(v);
+    return {
+        x: x / length,
+        y: y / length,
+        z: z / length
+    };
+}
+normalize({ x: 1, z: 2, y: 3 });
+var userx = { a: 'dd' };
+//userx.er
+function calculateLengthL1(v) {
+    /*let length = 0;
+    for (const axis of Object.keys(v)) {
+        //dado que v puede tener mas propiedades en el argumento que en el parametro
+        //esta puede tener una o mas con tipo diferente al establecido en Vector3D
+        //es por ese motivo que typescript considera a axis como typo any, ya que aqui se
+        //hace una labaza de propiedades. TypeScript no tiene motivo para creer que v[axis]
+        //es un numero
+        const coord = v[axis]
+        length += Math.abs(coord)
+    }
+    return length*/
+    var x = v.x, y = v.y, z = v.z;
+    return Math.abs(x) + Math.abs(y) + Math.abs(z);
+    /*for (let axis in v) {
+        const cord = v[axis]
+    }*/
+}
+var C = /** @class */ (function () {
+    function C(foo) {
+        this.foo = foo;
+    }
+    return C;
+}());
+var c = new C('instance of C');
+// aqui esta clase se esta tomando como un typo, esto conlleva a que un objeto pueda ser definido
+// como typo C como se muestra en la variable d, ya que esta tiene la misma estructura que la 
+// clase C => { foo: string } => this.foo => d.foo = 'string'
+var d = { foo: 'object literal' };
+function getAuthors(database) {
+    var authorRows = database.runQuery('SELECT FIRST, LAST FROM AUTHORS');
+    console.log(authorRows)
+    return authorRows.map(function (row) { return ({ first: row[0], last: row[1] }); });
+}
+module.exports = {
+    getAuthors: getAuthors
+};

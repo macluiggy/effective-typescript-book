@@ -13,7 +13,7 @@ const x: number | null = null //no se muestra error si strictNullChecks esta des
 //Item 3: Understand That Code Generation Is Independent of Types
 
 let saluda = 'hello'
-saluda = 1234 //typescript gives you a message error, that the original variable is a string, not a number
+//saluda = 1234 //typescript gives you a message error, that the original variable is a string, not a number
 //but it won't prevent you from the build, they are just warnings of potencial error
 //You cannot check typescript types at runtime
 interface Square {
@@ -88,7 +88,7 @@ function setLightSwitch(value: boolean) {
 }
 
 // You Cannot Overload a Function Based on TypeScript Types
-function add2 (a: string| number, b: string| number): string { return `${a + b}`}
+function add2 (a: string, b: string): string { return `${a + b}`}
 console.log(add(1, 2))
 
 
@@ -191,7 +191,7 @@ interface Author {
 }
 function getAuthors(database: DB): Author[] {
     const authorRows = database.runQuery('SELECT FIRST, LAST FROM AUTHORS');
-    return authorRows.map(row => ({first: row[0], last: row[1]}))
+    return authorRows.map((row: string[]): Author => ({first: row[0], last: row[1]}))
 }
 
 module.exports = {
